@@ -27,12 +27,13 @@ export default function About() {
   const usedSpeeds: number[] = [];
   const [view, setView] = useState("ktop");
   const [screen, setScreen] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 0,
+    height: 0,
   });
 
   // get screen size
   useEffect(() => {
+    setScreen({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener("resize", () => {
       setScreen({ width: window.innerWidth, height: window.innerHeight });
       const rand = Math.floor(Math.random() * skills.length);
