@@ -9,14 +9,23 @@ export default function Home() {
         <LandingTitle />
       </span>
 
-      <div className="flex flex-col gap-y-4 px-4 py-4 text-slate-400 ">
-        <a className="hover:text-white hover:underline" href="/about">
+      <div className="flex flex-col gap-y-4 px-4 py-4 text-slate-400">
+        <a
+          className="hover:text-white text-xl hover:underline max-w-fit"
+          href="/about"
+        >
           About Me
         </a>
-        <a className="hover:text-white hover:underline" href="/projects">
+        <a
+          className="hover:text-white text-xl hover:underline max-w-fit"
+          href="/projects"
+        >
           My Projects
         </a>
-        <a className="hover:text-white hover:underline" href="/contact">
+        <a
+          className="hover:text-white text-xl hover:underline max-w-fit"
+          href="/contact"
+        >
           Contact Me
         </a>
       </div>
