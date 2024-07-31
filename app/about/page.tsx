@@ -80,32 +80,28 @@ export default function About() {
     return styles[Math.floor(Math.random() * styles.length)];
   }
 
-  function marqueeInit() {
+  function getSkillLimit() {
     //adjust text size according to screen size
 
     if (screen.height >= 1000) {
+      return 7;
+    } else if (screen.height > 800) {
       return 6;
-    }
-
-    if (screen.height > 800) {
-      return 4;
-    }
-
-    if (screen.height >= 600) {
-      return 3;
-    }
-
-    if (screen.height <= 800) {
-      return 0;
+    } else if (screen.height >= 600) {
+      return 15;
     }
   }
 
+  const shuffledSkills = skills.sort(() => Math.random() - 0.5);
+  const chosenSkills = shuffledSkills; //.slice(0, getSkillLimit());
+
+  //have it bounce using translate in css
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-hidden max-h-[100vh]">
       <div className="grid grid-cols-3">
         <div className="aspect-square h-full max-h-[600px] overflow-hidden">
           <Image
-            src="/my-pic.jpg"
+            src="/my-pic.JPG"
             width={0}
             height={0}
             sizes="100vw"
@@ -115,8 +111,8 @@ export default function About() {
         </div>
         <div className="pt-4 col-span-2"></div>
       </div>
-      <div className="pt-14 pb-[100px]">
-        {skills.map((skill) => (
+      <div className="pt-4">
+        {chosenSkills.map((skill) => (
           <Marquee
             key={skill}
             delay={randomDelay()}
