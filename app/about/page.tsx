@@ -63,6 +63,25 @@ export default function About() {
     return speed;
   }
 
+  function randomTextColour() {
+    const colours = [
+      "text-red-400",
+      "text-yellow-400",
+      "text-green-400",
+      "text-blue-400",
+      "text-indigo-400",
+      "text-purple-400",
+      "text-pink-400",
+      "text-red-500",
+      "text-yellow-500",
+      "text-green-500",
+      "text-blue-500",
+      "text-indigo-500",
+      "text-purple-500",
+    ];
+    return colours[Math.floor(Math.random() * colours.length)];
+  }
+
   function randomTextSize() {
     const styles = ["text-xl", "text-lg", "text-md"];
 
@@ -107,7 +126,7 @@ export default function About() {
             height={0}
             sizes="100vw"
             className="object-cover w-full h-full"
-            alt="cool-ass photo of me"
+            alt="photo of me"
           />
         </div>
         <div className="pt-4 col-span-2"></div>
@@ -116,13 +135,12 @@ export default function About() {
         {chosenSkills.map((skill) => (
           <Marquee
             key={skill}
-            delay={randomDelay()}
             speed={randomSpeed()}
             className="flex flex-col h-fit"
             direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
           >
             <div
-              className={`${randomTextSize()} h-fit py-[2px] overflow-hidden`}
+              className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden`}
             >
               {skill}
             </div>
