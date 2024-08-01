@@ -108,7 +108,7 @@ export default function About() {
   //have it bounce using translate in css
   return (
     <div className="flex flex-col overflow-hidden max-h-[100vh]">
-      <Header />
+      <Header view={view} />
       <div className="grid grid-cols-3">
         <div className="aspect-square h-full max-h-[600px] items-start">
           <Image
