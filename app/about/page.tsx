@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import { useEffect, useState } from "react";
+import Header from "../components/Header";
 
 export default function About() {
   const skills = [
@@ -23,27 +24,28 @@ export default function About() {
     "Angular",
   ];
 
+  const rand = Math.floor(Math.random() * skills.length);
   const usedDelays: number[] = [];
   const usedSpeeds: number[] = [];
+
   const [view, setView] = useState("ktop");
   const [screen, setScreen] = useState({
     width: 0,
     height: 0,
   });
 
+  useEffect(() => {
+    setView(screen.width > 800 ? "desktop" : "mobile");
+    console.log(screen);
+  }, [screen, screen.width, screen.height]);
+
   // get screen size
   useEffect(() => {
     setScreen({ width: window.innerWidth, height: window.innerHeight });
     window.addEventListener("resize", () => {
       setScreen({ width: window.innerWidth, height: window.innerHeight });
-      const rand = Math.floor(Math.random() * skills.length);
     });
   }, []);
-
-  useEffect(() => {
-    setView(screen.width > 800 ? "desktop" : "mobile");
-    console.log(screen);
-  }, [screen.width, screen.height]);
 
   function randomDelay() {
     const delay = Math.floor(Math.random() * skills.length) + 1;
@@ -61,6 +63,25 @@ export default function About() {
     }
     usedSpeeds.push(speed);
     return speed;
+  }
+
+  function randomTextColour() {
+    const colours = [
+      "text-red-400",
+      "text-yellow-400",
+      "text-green-400",
+      "text-blue-400",
+      "text-indigo-400",
+      "text-purple-400",
+      "text-pink-400",
+      "text-red-500",
+      "text-yellow-500",
+      "text-green-500",
+      "text-blue-500",
+      "text-indigo-500",
+      "text-purple-500",
+    ];
+    return colours[Math.floor(Math.random() * colours.length)];
   }
 
   function randomTextSize() {
@@ -81,33 +102,22 @@ export default function About() {
     return styles[Math.floor(Math.random() * styles.length)];
   }
 
-  function getSkillLimit() {
-    //adjust text size according to screen size
-
-    if (screen.height >= 1000) {
-      return 7;
-    } else if (screen.height > 800) {
-      return 6;
-    } else if (screen.height >= 600) {
-      return 15;
-    }
-  }
-
   const shuffledSkills = skills.sort(() => Math.random() - 0.5);
   const chosenSkills = shuffledSkills; //.slice(0, getSkillLimit());
 
   //have it bounce using translate in css
   return (
     <div className="flex flex-col overflow-hidden max-h-[100vh]">
+      <Header />
       <div className="grid grid-cols-3">
-        <div className="aspect-square h-full max-h-[600px] overflow-hidden">
+        <div className="aspect-square h-full max-h-[600px] items-start">
           <Image
             src="/my-pic.JPG"
             width={0}
             height={0}
             sizes="100vw"
             className="object-cover w-full h-full"
-            alt="cool-ass photo of me"
+            alt="photo of me"
           />
         </div>
         <div className="pt-4 col-span-2"></div>
@@ -116,13 +126,12 @@ export default function About() {
         {chosenSkills.map((skill) => (
           <Marquee
             key={skill}
-            delay={randomDelay()}
             speed={randomSpeed()}
             className="flex flex-col h-fit"
             direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
           >
             <div
-              className={`${randomTextSize()} h-fit py-[2px] overflow-hidden`}
+              className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden animate-pulse select-none`}
             >
               {skill}
             </div>
