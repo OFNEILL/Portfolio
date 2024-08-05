@@ -129,7 +129,7 @@ export default function About() {
       <Header view={view} />
       <div className="grid lg:grid-cols-3">
         <div
-          className={`flex ${view === "mobile" ? "flex-col items-center align-middle min-w-full max-w-[300px] w-full" : "flex-row"} justify-between gap-12`}
+          className={`flex ${view === "mobile" ? "flex-col items-center align-middle min-w-full max-w-[300px] w-full" : "flex-row items-center"} justify-between gap-12`}
         >
           <div className="aspect-square h-full max-h-[600px]">
             <Image
@@ -141,7 +141,7 @@ export default function About() {
               alt="photo of me"
             />
           </div>
-          <div className="flex-row items-center align-middle jusify-center">
+          <div className="">
             <div
               className={`w-full ${view === "mobile" ? "text-sm min-w-[300px] max-w-[300px] min-h-4" : "text-xl min-w-[600px] max-w-[600px] min-h-4"} `}
             >
@@ -164,11 +164,21 @@ export default function About() {
                       totalCount:
                         "{{count}} contributions in the last six months",
                     }}
+                    blockSize={20}
                   />
                 </span>
               )}
             </div>
           </div>
+          <iframe
+            id="AmazonMusicEmbed42823823a24f46fa9edfb82319ce7239engb"
+            src="https://music.amazon.co.uk/embed/42823823a24f46fa9edfb82319ce7239engb/?id=3FYanS7GLZ&marketplaceId=A1F83G8C2ARO7P&musicTerritory=GB"
+            width="100%"
+            height="352px"
+            frameBorder="0"
+            className="border-radius-[20px] max-w-full pl-32"
+            // style="border-radius:20px;max-width:"
+          ></iframe>
           <div className="pt-4 col-span-2"></div>
         </div>
       </div>
