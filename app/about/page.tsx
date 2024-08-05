@@ -120,6 +120,17 @@ export default function About() {
             alt="photo of me"
           />
         </div>
+        <div className="w-full text-xl overflow-auto">
+          From a young age, I always dreamed of becoming a software developer. I
+          have always been fascinated by technology and the endless
+          possibilities it brings. I have been programming for over 5 years now
+          and have worked on a variety of projects ranging from web development
+          to mobile app development. I am always looking to learn new
+          technologies and improve my skills. It is through honing these skills
+          that I can call myself a Full Stack Developer, with a focus on
+          Backend. I am proficient in a variety of programming languages and
+          frameworks, some of which are listed below.
+        </div>
         <div className="pt-4 col-span-2"></div>
       </div>
       <div className="pt-4">
