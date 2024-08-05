@@ -125,7 +125,7 @@ export default function About() {
 
   //have it bounce using translate in css
   return (
-    <div className="flex flex-col lg:overflow-hidden max-h-[100vh]">
+    <div className="flex flex-col lg:overflow-hidden max-h-[100vh] overflow-x-hidden">
       <Header view={view} />
       <div className="grid lg:grid-cols-3">
         <div
