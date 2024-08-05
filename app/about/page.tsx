@@ -176,7 +176,7 @@ export default function About() {
             width="100%"
             height="352px"
             frameBorder="0"
-            className="border-radius-[20px] max-w-full pl-32"
+            className={`border-radius-[20px] max-w-full pl-30 lg:min-h-[95%] min-w-[100%] ${view === "mobile" ? "min-h-[350px]" : null} `}
             // style="border-radius:20px;max-width:"
           ></iframe>
           <div className="pt-4 col-span-2"></div>
