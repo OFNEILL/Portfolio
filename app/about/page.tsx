@@ -57,12 +57,12 @@ export default function About() {
     return delay;
   }
 
-  const selectLastHalfYear = (contributions) => {
+  const selectLastHalfYear = (contributions: any) => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     const shownMonths = 6;
 
-    return contributions.filter((activity) => {
+    return contributions.filter((activity: any) => {
       const date = new Date(activity.date);
       const monthOfDay = date.getMonth();
 
