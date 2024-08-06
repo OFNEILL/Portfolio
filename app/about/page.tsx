@@ -143,17 +143,26 @@ export default function About() {
           </div>
           <div className="">
             <div
-              className={`w-full ${view === "mobile" ? "text-sm min-w-[300px] max-w-[300px] min-h-4" : "text-xl min-w-[600px] max-w-[600px] min-h-4"} `}
+              className={`w-full ${view === "mobile" ? "text-sm min-w-[300px] max-w-[300px] min-h-4" : "text-l min-w-[600px] max-w-[600px] min-h-4"} `}
             >
-              From a young age, I always dreamed of becoming a software
-              developer. I have always been fascinated by technology and the
-              endless possibilities it brings. I have been programming for over
-              5 years now and have worked on a variety of projects ranging from
-              web development to mobile app development. I am always looking to
-              learn new technologies and improve my skills. It is through honing
-              these skills that I can call myself a Full Stack Developer, with a
-              focus on Backend. I am proficient in a variety of programming
-              languages and frameworks, some of which are listed below.
+              <p>
+                &nbsp; &nbsp;&nbsp; &nbsp; From a young age, I always dreamed of
+                becoming a software developer. &nbsp; I have always been
+                fascinated by technology and the endless possibilities it
+                brings. &nbsp; I have been programming for over 4 years now,
+                with 3 of those years being professionally and have worked on a
+                variety of projects ranging from web development to mobile app
+                development.
+              </p>
+              <p className="pt-2">
+                &nbsp; &nbsp;&nbsp; &nbsp; I am always looking to learn new
+                technologies and improve my skills.&nbsp; It is through honing
+                these skills that I can call myself a Full Stack Developer, with
+                a focus on Backend.&nbsp; I am proficient in a variety of
+                programming languages and frameworks, some of which are listed
+                below.
+              </p>
+
               {view === "mobile" ? null : (
                 <span className="flex !pt-2">
                   <GitHubCalendar
