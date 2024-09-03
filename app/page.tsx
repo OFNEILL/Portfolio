@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import LandingTitle from "./components/LandingTitle";
+import Marquee from "react-fast-marquee";
 
 export default function Home() {
   const [view, setView] = useState("ktop");
@@ -24,36 +25,135 @@ export default function Home() {
     });
   }, []);
 
-  return (
-    <div className="flex flex-col justify-center justify-items-center align-middle">
-      <span className="select-none">
-        <LandingTitle />
-      </span>
+  const usedDelays: number[] = [];
+  const usedSpeeds: number[] = [];
 
-      <div
-        className={`flex flex-col gap-y-4 px-4 py-4 text-slate-400 ${view === "mobile" ? "items-center gap-y-12 py-[25%]" : null}`}
-      >
-        <a
-          className={`hover:text-white text-xl hover:underline max-w-fit ${tab === "about" ? "animate-ping" : null} ${view === "mobile" ? "!text-2xl" : null}`}
-          href="/about"
-          onClick={() => setTab("about")}
-        >
-          About Me
-        </a>
-        <a
-          className={`hover:text-white text-xl hover:underline max-w-fit ${tab === "projects" ? "animate-ping" : null}  ${view === "mobile" ? "!text-2xl" : null}`}
-          href="/projects"
-          onClick={() => setTab("projects")}
-        >
-          My Projects
-        </a>
-        <a
-          className={`hover:text-white text-xl hover:underline max-w-fit ${tab === "contact" ? "animate-ping" : null}  ${view === "mobile" ? "!text-2xl" : null}`}
-          href="/contact"
-          onClick={() => setTab("contact")}
-        >
-          Contact Me
-        </a>
+  const skills = [
+    "C#",
+    "Node.js",
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "TailwindCSS",
+    "TSQL",
+    "MySQL",
+    "Python",
+    "React Native",
+    "Azure Devops",
+    "Google Cloud",
+    "Arch Linux",
+    "Ubuntu LTS",
+    "Angular",
+    "Software",
+    "Software Solutions",
+    "Website Design",
+    "Website Development",
+    "Website Creation",
+    "Programming",
+  ];
+
+  function randomSpeed() {
+    const speed = Math.floor(Math.random() * 230) + 50;
+    if (usedSpeeds.includes(speed)) {
+      return randomSpeed();
+    }
+    usedSpeeds.push(speed);
+    return speed;
+  }
+
+  function randomTextColour() {
+    const colours = [
+      "text-red-400",
+      "text-yellow-400",
+      "text-green-400",
+      "text-blue-400",
+      "text-indigo-400",
+      "text-purple-400",
+      "text-pink-400",
+      "text-red-500",
+      "text-yellow-500",
+      "text-green-500",
+      "text-blue-500",
+      "text-indigo-500",
+      "text-purple-500",
+    ];
+    return colours[Math.floor(Math.random() * colours.length)];
+  }
+
+  function randomTextSize() {
+    const styles = ["text-xl", "text-lg", "text-md"];
+
+    styles.push(
+      "text-7xl",
+      "text-6xl",
+      "text-5xl",
+      "text-4xl",
+      "text-3xl",
+      "text-2xl",
+    );
+    return styles[Math.floor(Math.random() * styles.length)];
+  }
+
+  const shuffledSkills = skills.sort(() => Math.random() - 0.5);
+
+  return (
+    <div>
+      <div className="z-10 absolute opacity-50 w-full min-h-[100vh] max-h-[100vh] overflow-hidden">
+        {shuffledSkills.map((skill) => (
+          <Marquee
+            key={skill}
+            speed={randomSpeed()}
+            className="flex flex-col h-fit z-10"
+            direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
+          >
+            <div
+              className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden animate-pulse select-none`}
+            >
+              {skill}
+            </div>
+          </Marquee>
+        ))}
+      </div>
+
+      <div className="z-20 w-full absolute h-[150vh]">
+        <span className="flex flex-col h-[100vh] z-20 items-center justify-center">
+          <LandingTitle />
+        </span>
+
+        <span className="flex flex-col xs:justify-center lg:justify-between">
+          <div className="flex flex-col items-start h-[100vh]">
+            <div className="flex flex-col gap-4 pt-32 px-2">
+              <h2 className="text-2xl underline xs:self-center lg:self-start">
+                About Me
+              </h2>
+              <div className="text-lg xs:w-full xs:px-2 lg:w-[35%] lg:text-start xs:text-center">
+                <p>
+                  &nbsp; &nbsp;&nbsp; &nbsp; From a young age, I always dreamed
+                  of becoming a software developer. &nbsp; I have always been
+                  fascinated by technology and the endless possibilities it
+                  brings. &nbsp; I have been programming for over 4 years now,
+                  with 3 of those years being professionally and have worked on
+                  a variety of projects ranging from web development to mobile
+                  app development.
+                </p>
+                <p className="pt-2">
+                  &nbsp; &nbsp;&nbsp; &nbsp; I am always looking to learn new
+                  technologies and improve my skills.&nbsp; It is through honing
+                  these skills that I can call myself a Full Stack Developer,
+                  with a focus on Backend.&nbsp; I am proficient in a variety of
+                  programming languages and frameworks, some of which are listed
+                  below.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col xs:self-center lg:self-end px-2 h-[100vh]">
+            <h2 className="text-2xl underline xs:self-center lg:self-start">
+              My Projects
+            </h2>
+          </div>
+        </span>
       </div>
     </div>
   );
