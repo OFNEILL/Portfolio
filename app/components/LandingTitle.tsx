@@ -21,10 +21,9 @@ export default function LandingTitle() {
   const [colour, setColour] = useState("text-white");
 
   return (
-    <header>
+    <header className="self-center">
       <h1
-        className={`${colour} text-[calc(100vw/4.2)] w-full max-w-full min-w-full fit-content font-bold text-center uppercase`}
-        onClick={() => setColour(randomTextColour())}
+        className={`${colour} text-[calc(100vw/4.2)] w-full max-w-full min-w-full fit-content font-bold text-center uppercase self-center align-middle justify-self-center z-20`}
       >
         OFNEILL
       </h1>
