@@ -3,6 +3,18 @@
 import { Suspense, useEffect, useState } from "react";
 import LandingTitle from "./components/LandingTitle";
 import Marquee from "react-fast-marquee";
+import Image from "next/image";
+import {
+  BellElectricIcon,
+  CodeIcon,
+  GithubIcon,
+  GlobeIcon,
+  MessagesSquareIcon,
+  PlaneTakeoffIcon,
+  SendIcon,
+} from "lucide-react";
+import dynamic from 'next/dynamic'
+ 
 
 export default function Home() {
   const [view, setView] = useState("ktop");
@@ -12,20 +24,6 @@ export default function Home() {
     height: 0,
   });
 
-  useEffect(() => {
-    setView(screen.width > 800 ? "desktop" : "mobile");
-    console.log(screen);
-  }, [screen, screen.width, screen.height]);
-
-  // get screen size
-  useEffect(() => {
-    setScreen({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("resize", () => {
-      setScreen({ width: window.innerWidth, height: window.innerHeight });
-    });
-  }, []);
-
-  const usedDelays: number[] = [];
   const usedSpeeds: number[] = [];
 
   const skills = [
@@ -42,7 +40,7 @@ export default function Home() {
     "Azure Devops",
     "Google Cloud",
     "Arch Linux",
-    "Ubuntu LTS",
+    "Ubuntu",
     "Angular",
     "Software",
     "Software Solutions",
@@ -81,16 +79,18 @@ export default function Home() {
   }
 
   function randomTextSize() {
-    const styles = ["text-xl", "text-lg", "text-md"];
-
-    styles.push(
+    const styles = [
+      "text-xl",
+      "text-lg",
+      "text-md",
       "text-7xl",
       "text-6xl",
       "text-5xl",
       "text-4xl",
       "text-3xl",
       "text-2xl",
-    );
+    ];
+
     return styles[Math.floor(Math.random() * styles.length)];
   }
 
@@ -98,21 +98,33 @@ export default function Home() {
 
   return (
     <div>
-      <div className="z-10 absolute opacity-50 w-full min-h-[100vh] max-h-[100vh] overflow-hidden">
-        {shuffledSkills.map((skill) => (
-          <Marquee
-            key={skill}
-            speed={randomSpeed()}
-            className="flex flex-col h-fit z-10"
-            direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
-          >
-            <div
-              className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden animate-pulse select-none`}
+      <div className="z-10 absolute opacity-50 w-full lg:min-h-[100dvh] lg:max-h-[100dvh] overflow-hidden lg:block xs:hidden transform-gpu(100%)">
+        <NoSSR />
+        <Suspense fallback={<></>}>
+          {shuffledSkills.map((skill) => (
+            <Marquee
+              key={skill}
+              speed={randomSpeed()}
+              className="flex flex-col h-fit z-10"
+              direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
             >
+              <div
+                className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden animate-pulse select-none`}
+              >
+                {skill}
+              </div>
+            </Marquee>
+          ))}
+        </NoSS>
+      </div>
+      <div className="z-10 absolute overflow-hidden lg:hidden xs:block min-h-[10px] max-h-[10px] transform-gpu(100%)">
+        <Suspense fallback={<></>}>
+          {skills.map((skill) => (
+            <div key={skill} className="text-black text-xs">
               {skill}
             </div>
-          </Marquee>
-        ))}
+          ))}
+        </Suspense>
       </div>
 
       <div className="z-20 w-full absolute h-[150vh]">
@@ -148,10 +160,128 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col xs:self-center lg:self-end px-2 h-[100vh]">
-            <h2 className="text-2xl underline xs:self-center lg:self-start">
+          <div className="flex flex-col xs:self-center lg:self-end xs:[200vh] lg:h-[150vh] gap-y-6 px-2">
+            <h2 className="text-2xl underline xs:self-center lg:self-end">
               My Projects
             </h2>
+            <span className="rounded-lg xs:[max-w-[50%] lg:max-w-[25%] bg-zinc-900 p-2 lg:self-end xs:self-center flex-col">
+              <Image
+                alt="monstr"
+                src="/monstr-desktop.gif"
+                width={0}
+                height={0}
+                sizes="100vw"
+                unoptimized={true}
+                className="w-fit h-auto"
+              />
+              <span className="flex flex-row text-sm pt-1 justify-between items-center w-full">
+                <span className="flex flex-row items-center gap-x-1">
+                  <SendIcon strokeWidth={1.5} size={16} />
+                  <span>Monstr</span>
+                </span>
+                <span className="flex items-center pr-2 gap-2">
+                  <GithubIcon
+                    strokeWidth={1.5}
+                    size={18}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      window.open("https://github.com/OFNEILL/monstr")
+                    }
+                  />
+                  <GlobeIcon
+                    strokeWidth={1.5}
+                    size={18}
+                    className="cursor-pointer hover"
+                    onClick={() => window.open("https://monstr.ofneill.com")}
+                  />
+                </span>
+              </span>
+            </span>
+            <span className="rounded-lg xs:[max-w-[50%] lg:max-w-[25%] bg-zinc-900 p-2 lg:self-end xs:self-center flex-col">
+              <Image
+                alt="nvim"
+                src="/nvim-desktop.gif"
+                width={0}
+                height={0}
+                sizes="100vw"
+                unoptimized={true}
+                className="w-fit h-auto"
+              />
+              <span className="flex flex-row text-sm pt-1 justify-between items-center w-full">
+                <span className="flex flex-row items-center gap-x-1">
+                  <CodeIcon strokeWidth={1.5} size={16} />
+                  <span>My Neovim Config</span>
+                </span>
+                <span className="flex items-center pr-2 gap-2">
+                  <GithubIcon
+                    strokeWidth={1.5}
+                    size={18}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      window.open("https://github.com/OFNEILL/dotfiles")
+                    }
+                  />
+                </span>
+              </span>
+            </span>
+            <span className="rounded-lg xs:[max-w-[50%] lg:max-w-[25%] bg-zinc-900 p-2 lg:self-end xs:self-center flex-col">
+              <Image
+                alt="eeabc"
+                src="/eeabc-desktop.gif"
+                width={0}
+                height={0}
+                sizes="100vw"
+                unoptimized={true}
+                className="w-fit h-auto"
+              />
+              <span className="flex flex-row text-sm pt-1 justify-between items-center w-full">
+                <span className="flex flex-row items-center gap-x-1">
+                  <BellElectricIcon strokeWidth={1.5} size={16} />
+                  <span>Epsom and Ewell ABC</span>
+                </span>
+                <span className="flex items-center pr-2 gap-2">
+                  <GlobeIcon
+                    strokeWidth={1.5}
+                    size={18}
+                    className="cursor-pointer hover"
+                    onClick={() => window.open("https://epsomandewellabc.com")}
+                  />
+                </span>
+              </span>
+            </span>
+            <span className="rounded-lg xs:[max-w-[50%] lg:max-w-[25%] bg-zinc-900 p-2 lg:self-end xs:self-center flex-col">
+              <Image
+                alt="travelcy"
+                src="/travelcy-desktop.gif"
+                width={0}
+                height={0}
+                sizes="100vw"
+                unoptimized={true}
+                className="w-fit h-auto"
+              />
+              <span className="flex flex-row text-sm pt-1 justify-between items-center w-full">
+                <span className="flex flex-row items-center gap-x-1">
+                  <PlaneTakeoffIcon strokeWidth={1.5} size={16} />
+                  <span>Travelcy</span>
+                </span>
+                <span className="flex items-center pr-2 gap-2">
+                  <GithubIcon
+                    strokeWidth={1.5}
+                    size={18}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      window.open("https://github.com/OFNEILL/travelcy-ui")
+                    }
+                  />
+                  <GlobeIcon
+                    strokeWidth={1.5}
+                    size={18}
+                    className="cursor-pointer hover"
+                    onClick={() => window.open("https://travelcy.ofneill.com")}
+                  />
+                </span>
+              </span>
+            </span>
           </div>
         </span>
       </div>
