@@ -223,7 +223,7 @@ export default function Home() {
             <span className="rounded-lg xs:[max-w-[50%] lg:max-w-[25%] bg-zinc-900 p-2 lg:self-end xs:self-center flex-col">
               <Image
                 alt="eeabc"
-                src="https://github.com/OFNEILL/Portfolio/blob/master/public/eeabc-desktop.gif"
+                src="/eeabc-desktop.gif"
                 width={0}
                 height={0}
                 sizes="100vw"
