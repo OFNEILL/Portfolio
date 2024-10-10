@@ -240,7 +240,12 @@ export default function Home() {
                     strokeWidth={1.5}
                     size={18}
                     className="cursor-pointer hover"
-                    onClick={() => window.open("https://epsomandewellabc.com")}
+                    // onClick={() => window.open("https://epsomandewellabc.com")}
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/OFNEILL/Portfolio/blob/master/public/eeabc-desktop.gif",
+                      )
+                    }
                   />
                 </span>
               </span>
