@@ -13,8 +13,7 @@ import {
   PlaneTakeoffIcon,
   SendIcon,
 } from "lucide-react";
-import dynamic from 'next/dynamic'
- 
+import dynamic from "next/dynamic";
 
 export default function Home() {
   const [view, setView] = useState("ktop");
@@ -99,23 +98,20 @@ export default function Home() {
   return (
     <div>
       <div className="z-10 absolute opacity-50 w-full lg:min-h-[100dvh] lg:max-h-[100dvh] overflow-hidden lg:block xs:hidden transform-gpu(100%)">
-        <NoSSR />
-        <Suspense fallback={<></>}>
-          {shuffledSkills.map((skill) => (
-            <Marquee
-              key={skill}
-              speed={randomSpeed()}
-              className="flex flex-col h-fit z-10"
-              direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
+        {shuffledSkills.map((skill) => (
+          <Marquee
+            key={skill}
+            speed={randomSpeed()}
+            className="flex flex-col h-fit z-10"
+            direction={`${Math.floor(Math.random() * ["left", "right"].length) === 0 ? "left" : "right"}`}
+          >
+            <div
+              className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden animate-pulse select-none`}
             >
-              <div
-                className={`${randomTextSize()} ${randomTextColour()} h-fit py-[2px] overflow-hidden animate-pulse select-none`}
-              >
-                {skill}
-              </div>
-            </Marquee>
-          ))}
-        </NoSS>
+              {skill}
+            </div>
+          </Marquee>
+        ))}
       </div>
       <div className="z-10 absolute overflow-hidden lg:hidden xs:block min-h-[10px] max-h-[10px] transform-gpu(100%)">
         <Suspense fallback={<></>}>
