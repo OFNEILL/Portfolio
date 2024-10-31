@@ -222,14 +222,15 @@ export default function Home() {
             </span>
             <span className="rounded-lg xs:[max-w-[50%] lg:max-w-[25%] bg-zinc-900 p-2 lg:self-end xs:self-center flex-col">
               <Image
-                alt="eeabc"
-                src="https://github.com/OFNEILL/Portfolio/blob/master/public/eeabc-desktop.gif"
+                alt="nvim"
+                src="/eeabc-desktop.gif"
                 width={0}
                 height={0}
                 sizes="100vw"
                 unoptimized={true}
                 className="w-fit h-auto"
               />
+
               <span className="flex flex-row text-sm pt-1 justify-between items-center w-full">
                 <span className="flex flex-row items-center gap-x-1">
                   <BellElectricIcon strokeWidth={1.5} size={16} />
