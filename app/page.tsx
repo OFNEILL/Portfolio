@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
-import LandingTitle from "./components/LandingTitle";
 import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import {
@@ -13,7 +12,7 @@ import {
   PlaneTakeoffIcon,
   SendIcon,
 } from "lucide-react";
-import dynamic from "next/dynamic";
+import LandingTitle from "@/components/landing-title";
 
 export default function Home() {
   const [view, setView] = useState("ktop");
